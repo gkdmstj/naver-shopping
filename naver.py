@@ -42,6 +42,17 @@ with open(filename, 'w', newline='', encoding='utf-8') as csvfile:
 
 print("CSV 파일 저장 완료.")
 
+cart_list = []  # 장바구니 담을 리스트
+
+# 장바구니 CSV 파일로 저장
+filename = './cart_list.csv'
+fields = ['번호', '제품명', '가격', '상세정보']
+
+with open(filename, 'w', newline='', encoding='utf-8') as csvfile:
+    writer = csv.DictWriter(csvfile, fieldnames=fields)
+    writer.writeheader()
+    writer.writerows(cart_list)
+
 # 장바구니에 추가
 cart_list = []
 
@@ -58,15 +69,3 @@ while True:
     selected_product = product_list[product_number - 1]
     cart_list.append(selected_product)
     print(f"제품 '{selected_product['제품명']}'이 장바구니에 추가되었습니다.")
-
-# 장바구니 CSV 파일로 저장
-cart_filename = './cart_list.csv'
-fields = ['번호', '제품명', '가격', '상세정보']
-
-with open(cart_filename, 'w', newline='', encoding='utf-8') as csvfile:
-    writer = csv.DictWriter(csvfile, fieldnames=fields)
-    writer.writeheader()
-    writer.writerows(cart_list)
-
-print("장바구니 CSV 파일 저장 완료.")
-
